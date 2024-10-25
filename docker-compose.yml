@@ -1,0 +1,14 @@
+services:
+  # M1 - User Interface 
+  ui_service:
+    build: ./ui-service
+    ports:
+      - "5005:5005"
+
+  # M2 - Image Processing Service 
+  image_service:
+    build: ./image-service
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./output:/app/output  # Mapeia o diretório local para o diretório no contêiner

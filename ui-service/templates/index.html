@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <script>
+        async function generateImages(type) {
+            const text = document.getElementById('text').value;
+            const numImages = document.getElementById('numImages').value;
+            
+            try{
+                const response = await fetch('http://localhost:5000/generate', {  // Use the absolute URL here
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, numImages, type }) // Send the selected type
+                });
+            
+            
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `Generated image paths: ${data.image_paths}`;
+                
+            } catch (error) {
+                console.error('Failed to fetch:', error);
+                document.getElementById('result').innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        // Configurando a chamada automática a cada 1 minuto (60.000 milissegundos)
+        // setInterval(() => {
+        //     const type = "fractal"; // ou qualquer outro tipo que você queira definir
+        //    generateImages(type); // Chama a função automaticamente a cada 1 minuto
+        //}, 60000); // 60000 milissegundos = 1 minuto
+    </script>
+</head>
+<body>
+    <h1>Generate Images</h1>
+    <form id="imageForm" onsubmit="event.preventDefault();">
+        <label for="text">Image Text:</label>
+        <input type="text" id="text" name="text" required><br><br>
+
+        <label for="numImages">Number of Images:</label>
+        <input type="number" id="numImages" name="numImages" min="1" value="1" required><br><br>
+
+        <button type="button" onclick="generateImages('high_resolution')">High Resolution</button>
+        <button type="button" onclick="generateImages('complex_patterns')">Complex Patterns</button>
+        <button type="button" onclick="generateImages('generative_art')">Generative Art</button>
+        <button type="button" onclick="generateImages('fractal_mandelbrot')">Fractal Mandelbrotg</button>
+    </form>
+    
+    <div id="result"></div>
+</body>
+</html>
