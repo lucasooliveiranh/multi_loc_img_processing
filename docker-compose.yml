@@ -4,6 +4,8 @@ services:
     build: ./ui-service
     ports:
       - "5005:5005"
+    networks:
+      - monitoring
 
   # M2 - Image Processing Service 
   image_service:
@@ -12,3 +14,23 @@ services:
       - "5000:5000"
     volumes:
       - ./output:/app/output  # Mapeia o diretório local para o diretório no contêiner
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"  # Porta para acessar a interface do Prometheus 
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"  # Porta padrão do Grafana
+    networks:
+      - monitoring   
+  
+networks:
+  monitoring:
+    driver: bridge
