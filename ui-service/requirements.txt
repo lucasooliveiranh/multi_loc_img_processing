@@ -1,3 +1,5 @@
 Flask[async]
-prometheus-client
 psutil
+apscheduler
+pandas
+openpyxl
