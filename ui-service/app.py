@@ -10,7 +10,7 @@ import os
 app = Flask(__name__)
 
 # Defina o caminho do arquivo CSV para o diretório mapeado
-csv_file_path = os.path.join("/app/monitoring", "monitoramento_UI_SERVICE_LOW.csv")
+csv_file_path = os.path.join("/app/monitoring", "monitoramento_UI_SERVICE_MEETING.csv")
 
 # Inicializar o arquivo CSV
 csv_file = open(csv_file_path, mode='w', newline='')

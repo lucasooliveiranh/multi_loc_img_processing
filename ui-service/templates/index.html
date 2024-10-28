@@ -10,7 +10,7 @@
             const numImages = document.getElementById('numImages').value;
             
             try{
-                const response = await fetch('http://localhost:5000/generate', {  // http://192.168.1.3:5000/generate
+                const response = await fetch('http://192.168.1.3:5000/generate', {  // http://192.168.1.3:5000/generate
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text, numImages, type }) // Send the selected type
