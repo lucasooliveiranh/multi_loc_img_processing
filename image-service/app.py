@@ -21,7 +21,7 @@ app = Flask(__name__)
 CORS(app)  # This will allow CORS for all routes
 
 # Defina o caminho do arquivo CSV para o diretório mapeado
-csv_file_path = os.path.join(OUTPUT_DIR, "monitoramento_IMAGE_SERVICE_4K.csv")
+csv_file_path = os.path.join(OUTPUT_DIR, "monitoramento_IMAGE_SERVICE_LOW.csv")
 
 # Inicializar o arquivo CSV
 csv_file = open(csv_file_path, mode='w', newline='')
