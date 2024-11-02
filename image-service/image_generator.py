@@ -45,11 +45,11 @@ def mandelbrot(c, max_iter):
         z = z*z + c  # Calcula z
     return max_iter  # Retorna o máximo de iterações se não divergiu
 
-def generate_mandelbrot(image_number, max_iter=100): #max_iter=1000
+def generate_mandelbrot(image_number, max_iter=1000): #max_iter=1000
     # Baixa Resolução: 640, 360 
     # Meia Resolução: 1920, 1080 (Full HD)
     # Alta Resulução: 3840, 2160 (4K)
-    width, height =  1920, 1080
+    width, height =  3840, 2160
     
     image = Image.new('RGB', (width, height))
     pixels = image.load()

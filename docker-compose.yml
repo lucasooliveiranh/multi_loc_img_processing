@@ -4,6 +4,10 @@ services:
     build: ./ui-service
     ports:
       - "5005:5005"
+    volumes:
+      - ./monitoring:/app/monitoring  # Mapeia o diretório local para o diretório no contêiner
+    stdin_open: true  # Manter a entrada padrão aberta
+    tty: true         # Habilitar o modo de terminal
 
   # M2 - Image Processing Service 
   image_service:
